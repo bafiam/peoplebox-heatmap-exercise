@@ -26,7 +26,7 @@ class HeatmapController < ApplicationController
         end
       end
     end
-    # compute the avarage for each dept rounded to the nearest 3 decimals
+    # compute the avarage for each dept rounded to the nearest 2 decimals
     # return data based on the driver
     @drivers.each do |i|
       hash = {}
@@ -35,7 +35,7 @@ class HeatmapController < ApplicationController
       @response.each do |key, value|
         # can use inject for accum or reduce(:+)
         # set float default instead of to_f
-        hash['score'][key] = (value.inject(0.0) { |sum, el| sum + el } / value.size).round(3)
+        hash['score'][key] = (value.inject(0.0) { |sum, el| sum + el } / value.size).round(2)
       end
       results << hash
     end
