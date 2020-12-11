@@ -14,6 +14,9 @@ class HeatmapController < ApplicationController
     @resp = Hash.new('')
     @response = Hash.new([])
     @drivers.each do |drv|
+      # necessary loop, as if we did cache on the first call 
+      # and 
+      # the data is big could affect the memory if its less
       Response.find_each do |res|
         if res.driver_name == drv
           @dpts.each do |dp|
